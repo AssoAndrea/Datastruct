@@ -3,7 +3,14 @@
 #include "linkedList.h"
 
 
-
+void PrintLinkedList(string_item_t *list)
+{
+    while (list)
+    {
+        printf("%s\n", list->string);
+        list = (string_item_t *)list->node.next;
+    }
+}
 
 void Test_LinkedList()
 {
@@ -20,18 +27,17 @@ void Test_LinkedList()
     list_append((NODE_PP)&my_linked_list, (NODE_P)str_4);
 
 
-    list_remove((NODE_PP)&my_linked_list,(NODE_P)str_5);
+    list_remove((NODE_PP)&my_linked_list,(NODE_P)str_2);
+
+    PrintLinkedList(my_linked_list);
+    printf("\n\n");
+    printf("reversed list:\n");
 
     list_reverse((NODE_PP)&my_linked_list);
+    PrintLinkedList(my_linked_list);
+    
+    
 
-    
-    
-    string_item_t *string_item = my_linked_list;
-    while (string_item)
-    {
-        printf("%s\n", string_item->string);
-        string_item = (string_item_t *)string_item->node.next;
-    }
 }
 
 void Test_dynarray()
