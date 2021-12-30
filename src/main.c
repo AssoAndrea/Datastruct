@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "dArray.h"
 #include "linkedList.h"
+#include "doubleLinked.h"
 
 
 void PrintLinkedList(string_item_t *list)
@@ -10,6 +11,35 @@ void PrintLinkedList(string_item_t *list)
         printf("%s\n", list->string);
         list = (string_item_t *)list->node.next;
     }
+}
+
+void Test_DoubleLinkedList()
+{
+    dInt_item_t *list = NULL;
+    dInt_item_t *int1 = dInt_create(1);
+    dInt_item_t *int2 = dInt_create(2);
+    dInt_item_t *int3 = dInt_create(3);
+    dInt_item_t *int4 = dInt_create(4);
+    dInt_item_t *int5 = dInt_create(5);
+    dInt_item_t *int6 = dInt_create(6);
+
+
+    dlist_append((DNODE_PP)&list,(DNODE_P)int1);
+    dlist_append((DNODE_PP)&list,(DNODE_P)int2);
+    dlist_append((DNODE_PP)&list,(DNODE_P)int3);
+    dlist_append((DNODE_PP)&list,(DNODE_P)int4);
+    dlist_append((DNODE_PP)&list,(DNODE_P)int5);
+
+    //dList_remove((DNODE_PP)&list,(DNODE_P)int5);
+    dList_insert_before((DNODE_PP)&list,(DNODE_P)int1,(DNODE_P)int6);
+    if (int6->node.prev)
+    {
+        printf("\nè nullo");
+    }
+    
+
+
+    dList_print(list);
 }
 
 void Test_LinkedList()
@@ -58,7 +88,7 @@ void Test_dynarray()
 
 int main(int argc, char const *argv[])
 {
-    Test_LinkedList();
+    Test_DoubleLinkedList();
     
     return 0;
 }
