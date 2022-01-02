@@ -4,8 +4,9 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stddef.h>
+#include <time.h>
 
-
+#define RAND(upper,lower) ((rand() % (upper - lower + 1)) + lower) 
 
 dlist_node_t *dlist_get_tail(dlist_node_t **head)
 {
@@ -38,6 +39,18 @@ void dList_print(dInt_item_t *list)
         printf("%d\n", list->n);
         list = (dInt_item_t *)list->node.next;
     }
+}
+
+int dList_get_lenght(dInt_item_t *list)
+{
+    int counter = 0;
+    while (list)
+    {
+
+        counter++;
+        list = (dInt_item_t *)list->node.next;
+    }
+    return counter;
 }
 
 void dList_remove(dlist_node_t **head,dlist_node_t *item)
@@ -165,5 +178,45 @@ dlist_node_t *dlist_append(dlist_node_t **head, dlist_node_t *item)
     return item;
 }
 
+dInt_item_t *dList_shuffle(dlist_node_t **head)
+{
 
+    dInt_item_t *list = (dInt_item_t*)*head;
+    int l = dList_get_lenght(list);
+    int *saved_value = malloc(l * sizeof(int));
+
+    for (int i = 0; i < l; i++)
+    {
+        saved_value[i] = list->n;
+        list = (dInt_item_t *)list->node.next;
+    }
+    //shuffle array
+
+    srand(time(0));
+    int upper = l-1;
+    int lower = 0;
+
+    if (upper < 0)
+    {
+        perror("upper value negative");
+        return NULL;
+    }
+    
+    for (int i = 0; i < l; i++)
+    {
+        int r = RAND(upper, lower);
+        int tmp = saved_value[r];
+        saved_value[r] = saved_value[i];
+        saved_value[i] = tmp;
+    }
+    dInt_item_t *newList = NULL;
+    for (int i = 0; i < l; i++)
+    {
+        dInt_item_t *newItem = dInt_create(saved_value[i]);
+        dlist_append((DNODE_PP)&newList, (DNODE_P)newItem);
+    }
+
+    free(saved_value);
+    return newList;
+}
 

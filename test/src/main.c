@@ -2,4 +2,4 @@
 #include "test_Linked.h"
 #include "test_DoubleLinked.h"
 
-CLOVE_RUNNER(ReverseLinkedList,DoubleAppendAfter,DoubleAppendBefore,DoubleListRemove);
+CLOVE_RUNNER(ReverseLinkedList,DoubleAppendAfter,DoubleAppendBefore,DoubleListRemove,DoubleShuffle);
