@@ -102,10 +102,6 @@ CLOVE_TEST(DoubleShuffle)
     CLOVE_IS_TRUE(one_is_changed);
 }
 
-// int Check_if_changed(dInt_item_t *list,int *saved_value)
-// {
-
-// }
 
 CLOVE_TEST(DoubleAppendBefore)
 {
