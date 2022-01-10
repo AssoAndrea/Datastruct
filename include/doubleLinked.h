@@ -24,4 +24,5 @@ dInt_item_t *dList_shuffle(dlist_node_t **head);
 int dList_get_lenght(dInt_item_t *list);
 int dList_insert_after(dlist_node_t **head,dlist_node_t *after_this,dlist_node_t *item);
 int dList_insert_before(dlist_node_t **head, dlist_node_t *before_this, dlist_node_t *item);
+void dList_destroy(dlist_node_t **head);
 void dList_print(dInt_item_t *list);

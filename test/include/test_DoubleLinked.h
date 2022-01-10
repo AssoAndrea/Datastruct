@@ -100,6 +100,7 @@ CLOVE_TEST(DoubleShuffle)
     }
     
     CLOVE_IS_TRUE(one_is_changed);
+    dList_destroy((DNODE_PP)&list);
 }
 
 

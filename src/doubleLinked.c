@@ -46,7 +46,6 @@ int dList_get_lenght(dInt_item_t *list)
     int counter = 0;
     while (list)
     {
-
         counter++;
         list = (dInt_item_t *)list->node.next;
     }
@@ -176,6 +175,21 @@ dlist_node_t *dlist_append(dlist_node_t **head, dlist_node_t *item)
     item->prev = tail;
     item->next = NULL;
     return item;
+}
+
+void dList_destroy(dlist_node_t **head)
+{
+
+    dInt_item_t *tail = (dInt_item_t *)dlist_get_tail(head);
+    while (tail)
+    {
+        dList_remove(head, (DNODE_P)tail);
+        free(tail);
+        tail = (dInt_item_t *)dlist_get_tail(head);
+    }
+    
+
+
 }
 
 dInt_item_t *dList_shuffle(dlist_node_t **head)

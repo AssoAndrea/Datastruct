@@ -2,6 +2,7 @@
 #include "dArray.h"
 #include "linkedList.h"
 #include "doubleLinked.h"
+#include "set.h"
 
 
 void PrintLinkedList(string_item_t *list)
@@ -11,6 +12,38 @@ void PrintLinkedList(string_item_t *list)
         printf("%s\n", list->string);
         list = (string_item_t *)list->node.next;
     }
+}
+
+void Test_Set()
+{
+    set_table_t *table = set_table_new(10);
+    set_insert(table, "ciao", 4);
+    set_insert(table, "casa", 4);
+    set_insert(table, "cielo", 5);
+    set_insert(table, "radio", 5);
+
+    if(!set_insert(table, "radio", 5))
+    {
+        printf("insert fallito\n");
+    }
+    
+    set_insert(table, "penna", 5);
+    set_insert(table, "fenna", 5);
+    set_insert(table, "genna", 5);
+    set_insert(table, "lenna", 5);
+    set_insert(table, "liana", 5);
+    set_remove(table, "penna");
+    set_print(table);
+    printf("\n");
+
+    if (set_contain(table,"casa",4))
+    {
+        printf("trovato");
+    }else
+    {
+        printf("non trovato");
+    }
+    
 }
 
 void Test_DoubleLinkedList()
@@ -88,8 +121,8 @@ void Test_dynarray()
 
 int main(int argc, char const *argv[])
 {
-    Test_DoubleLinkedList();
-    
+    Test_Set();
+
     return 0;
 }
 
